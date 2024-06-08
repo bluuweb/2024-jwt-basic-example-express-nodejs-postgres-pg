@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <input type="email" placeholder="email" name="email">
+        <input type="password" placeholder="password" name="password">
+        <button type="submit">Acceder</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const loginForm = document.querySelector('#loginForm')
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            const email = e.target.email.value
+            const password = e.target.password.value
+            try {
+                const { data } = await axios.post('/api/v1/users/login', {
+                    email, password
+                })
+                localStorage.setItem('token', data.msg)
+                window.location.href = '/profile'
+            } catch (error) {
+                console.log(error)
+            }
+        })
+    </script>
+
+</body>
+
+</html>
