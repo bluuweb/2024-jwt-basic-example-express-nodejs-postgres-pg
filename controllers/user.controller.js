@@ -32,7 +32,7 @@ const register = async (req, res) => {
         return res.status(201).json({
             ok: true,
             msg: {
-                token, role_id: user.role_id
+                token, role_id: newUser.role_id
             }
         })
     } catch (error) {
