@@ -12,16 +12,24 @@
     <h2>Username: <span id="username"></span></h2>
     <h2>Email: <span id="email"></span></h2>
 
+    <button id="logout">Logout</button>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
 
         const username = document.querySelector('#username')
         const email = document.querySelector('#email')
         const token = localStorage.getItem('token')
+        const logout = document.querySelector('#logout')
 
         if (!token) {
             window.location.href = "/login"
         }
+
+        logout.addEventListener('click', () => {
+            localStorage.removeItem('token')
+            window.location.href = "/login"
+        })
 
         axios.get('/api/v1/users/profile', {
             headers: {
