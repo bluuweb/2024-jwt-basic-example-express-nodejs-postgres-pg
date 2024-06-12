@@ -18,4 +18,8 @@ router.get('/admin', (req, res) => {
     res.sendFile(publicPath + "/admin.html")
 })
 
+router.get('/pets', (req, res) => {
+    res.sendFile(publicPath + "/pets.html")
+})
+
 export default router
